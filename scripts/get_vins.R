@@ -42,13 +42,15 @@ zipcode <- 73019
 vinslist <- data.frame(stringsAsFactors=FALSE)
 
 for (page in 1:num_pages) {
-
+  print(paste('Processing page ',page,' of ',num_pages))
+  
   url <- paste('https://www.cars.com/for-sale/searchresults.action/?page=',page,'&perPage=',num_per_page,
                '&rd=50&searchSource=PAGINATION&shippable-dealers-checkbox=true&showMore=false&sort=relevance&stkTypId=28881&',
                'zc=',zipcode,'&localVehicles=false',
                 sep="")
   vins <- unlist(get_vins(url))
   vinslist <- rbind(vinslist, data.frame(vins))
+  
   
 }
 
